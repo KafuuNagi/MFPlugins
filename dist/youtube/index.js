@@ -128,40 +128,45 @@ async function getMediaSource(musicItem, quality) {
         id: null,
         urls: {},
     };
+    // https://gist.github.com/xissy/3812653
     const data = {
-        context: {
-            client: {
-                screenWidthPoints: 689,
-                screenHeightPoints: 963,
-                screenPixelDensity: 1,
-                utcOffsetMinutes: 120,
-                hl: "en",
-                gl: "GB",
-                remoteHost: "1.1.1.1",
-                deviceMake: "",
-                deviceModel: "",
-                userAgent: "com.google.android.apps.youtube.music/6.14.50 (Linux; U; Android 13; GB) gzip",
-                clientName: "ANDROID_MUSIC",
-                clientVersion: "6.14.50",
-                osName: "Android",
-                osVersion: "13",
-                originalUrl: "https://www.youtube.com/tv?is_account_switch=1&hrld=1&fltor=1",
-                theme: "CLASSIC",
-                platform: "MOBILE",
-                clientFormFactor: "UNKNOWN_FORM_FACTOR",
-                webpSupport: false,
-                timeZone: "Europe/Amsterdam",
-                acceptHeader: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-            },
-            user: { enableSafetyMode: false },
-            request: {
-                internalExperimentFlags: [],
-                consistencyTokenJars: [],
-            },
+        "context":{
+           "client":{
+              "hl":"en",
+              "clientName":"WEB",
+              "clientVersion":"2.20210721.00.00",
+              "clientFormFactor":"UNKNOWN_FORM_FACTOR",
+              "clientScreen":"WATCH",
+              "mainAppWebInfo":{
+                 "graftUrl": "/watch?v=" + musicItem.id
+              }
+           },
+           "user":{
+              "lockedSafetyMode":false
+           },
+           "request":{
+              "useSsl":true,
+              "internalExperimentFlags":[
+                 
+              ],
+              "consistencyTokenJars":[
+                 
+              ]
+           }
         },
-        contentCheckOk: true,
-        racyCheckOk: true,
-        video_id: musicItem.id,
+        "videoId":musicItem.id,
+        "playbackContext":{
+           "contentPlaybackContext":{
+              "vis":0,
+              "splay":false,
+              "autoCaptionsDefaultOn":false,
+              "autonavState":"STATE_NONE",
+              "html5Preference":"HTML5_PREF_WANTS",
+              "lactMilliseconds":"-1"
+           }
+        },
+        "racyCheckOk":false,
+        "contentCheckOk":false
     };
     var config = {
         method: "post",
